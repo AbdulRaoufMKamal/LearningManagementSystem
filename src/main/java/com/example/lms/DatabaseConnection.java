@@ -13,14 +13,14 @@ public class DatabaseConnection {
     public Connection databaseLink;
 
     public Connection getConnection() {
-        String databaseName = "LMS";
-        String databaseUser = "root";
-        String databasePassword = "root";
-        String url = "jdbc:mysql://localhost/" + databaseName;
+        String databaseName = "sql4495241";
+        String databaseUser = "sql4495241";
+        String databasePassword = "iezAHSzfeZ";
+        String url = "jdbc:mysql://sql4.freemysqlhosting.net:3306/sql4495241?" + "user=sql4495241&password=iezAHSzfeZ";
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            databaseLink = DriverManager.getConnection(url,databaseUser,databasePassword);
+            databaseLink = DriverManager.getConnection(url);
         }
         catch (Exception e) {
             e.printStackTrace();

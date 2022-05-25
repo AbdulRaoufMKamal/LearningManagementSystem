@@ -47,7 +47,7 @@ public class LoginForm {
         DatabaseConnection connect = new DatabaseConnection();
         Connection connectDB = connect.getConnection();
 
-        String verifyLogin = "SELECT count(1) FROM Account WHERE email = '" + email.getText() + "' AND password = '" + password.getText() + "'";
+        String verifyLogin = "SELECT count(1) FROM account WHERE email = '" + email.getText() + "' AND password = '" + password.getText() + "'";
 
         try {
             Statement statement = connectDB.createStatement();

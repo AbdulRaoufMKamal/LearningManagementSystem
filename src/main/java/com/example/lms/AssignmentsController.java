@@ -84,7 +84,7 @@ public class AssignmentsController implements Initializable {
         DatabaseConnection connect = new DatabaseConnection();
         Connection connectDB = connect.getConnection();
         Statement statement = connectDB.createStatement();
-        ResultSet rs = statement.executeQuery("select * from files");
+        ResultSet rs = statement.executeQuery("select * from file");
         while(rs.next()) {
             fileName = rs.getString("file_name");
             arr = rs.getBytes("file_data");
@@ -102,7 +102,7 @@ public class AssignmentsController implements Initializable {
             byte[] data = readFile(file);
             DatabaseConnection connect = new DatabaseConnection();
             Connection connectDB = connect.getConnection();
-            PreparedStatement preparedStatement = connect.databaseLink.prepareStatement("insert into files(file_name,file_data) values (?, ?)");
+            PreparedStatement preparedStatement = connect.databaseLink.prepareStatement("insert into file(file_name,file_data) values (?, ?)");
             preparedStatement.setString(1,file.getName());
             preparedStatement.setBytes(2,data);
             preparedStatement.execute();
