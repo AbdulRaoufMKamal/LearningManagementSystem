@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lms.Feedback">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lms.Feedback">
    <children>
       <Button fx:id="submitBtn" layoutX="17.0" layoutY="142.0" mnemonicParsing="false" onAction="#submitFeedback" prefHeight="43.0" prefWidth="180.0" text="SUBMIT FEEDBACK">
          <font>
@@ -14,7 +18,7 @@
          </font>
       </Button>
       <Label fx:id="charactersCount" layoutX="227.0" layoutY="334.0" prefHeight="17.0" prefWidth="191.0" text="Remaining Characters: " />
-      <Button layoutX="500.0" layoutY="14.0" mnemonicParsing="false" onAction="#back_click" text="BACK" />
+      <Button fx:id="feedbackBackButton" layoutX="500.0" layoutY="14.0" mnemonicParsing="false" onAction="#back_click" text="BACK" />
       <TextArea fx:id="feedback" layoutX="230.0" layoutY="52.0" onKeyTyped="#counterLimit" prefHeight="258.0" prefWidth="320.0" promptText="Write your feedback here (MAX 100 characters)" />
    </children>
 </AnchorPane>

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -8,7 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lms.AssignmentsController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lms.AssignmentsController">
     <children>
         <AnchorPane layoutY="-2.0" prefHeight="400.0" prefWidth="146.0" />
         <ImageView fitHeight="69.0" fitWidth="156.0" layoutX="221.0">
@@ -16,7 +21,7 @@
                 <Image url="@../../../img/lms_new.jpg" />
             </image>
         </ImageView>
-        <Button layoutX="547.0" layoutY="14.0" mnemonicParsing="false" onAction="#back_click" text="BACK" />
+        <Button fx:id="lectAssBackBtn" layoutX="547.0" layoutY="14.0" mnemonicParsing="false" onAction="#back_click" text="BACK" />
       <Button fx:id="submitBtn" layoutX="246.0" layoutY="354.0" mnemonicParsing="false" onAction="#Submit" prefHeight="39.0" prefWidth="131.0" text="UPLOAD">
          <font>
             <Font name="Cascadia Mono Regular" size="18.0" />
