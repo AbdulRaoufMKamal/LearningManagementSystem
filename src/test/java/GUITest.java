@@ -1,13 +1,13 @@
 import com.example.lms.Main;
 import com.example.lms.TableItemCustom;
+import com.sun.media.jfxmediaimpl.platform.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -234,6 +234,31 @@ public class GUITest {
             robot.clickOn(robot.lookup("#lecturesBackButton").queryAs(Button.class));
             assertNotNull(robot.lookup("#assignment").queryAs(ImageView.class));
         }
+
+        @Test
+        public void downloadErrorTest(FxRobot robot) {
+            robot.clickOn("#email");
+            robot.write("19p4442");
+            robot.clickOn("#password");
+            robot.write("abdulraouf");
+            robot.clickOn("#login");
+
+            TableView<TableItemCustom> table = robot.lookup("#courseTable").queryAs(TableView.class);
+            String columnID = table.getColumns().get(0).getId();
+            Node node = robot.lookup("#" + columnID).nth(1).query();
+            robot.clickOn(node);
+            robot.clickOn(robot.lookup("#selectCourseButton").queryAs(Button.class));
+
+            robot.clickOn(robot.lookup("#lecture").queryAs(ImageView.class));
+
+            robot.clickOn(robot.lookup("#lecturesDownload").queryAs(Button.class));
+            Node alert = robot.lookup(".dialog-pane").query();
+            DialogPane pane = (DialogPane) alert;
+            assertTrue(pane.isVisible());
+            assertEquals("You must select a file", pane.getContentText());
+            Button okButton = (Button) pane.lookup(".button");
+            robot.clickOn(okButton);
+        }
     }
 
     @Nested
@@ -286,6 +311,31 @@ public class GUITest {
 
             robot.clickOn(robot.lookup("#feedbackButton").queryAs(Button.class));
             assertNotNull(robot.lookup("#sub-table").tryQueryAs((TableView.class)));
+        }
+
+        @Test
+        public void downloadErrorTest(FxRobot robot) {
+            robot.clickOn("#email");
+            robot.write("19p4442");
+            robot.clickOn("#password");
+            robot.write("abdulraouf");
+            robot.clickOn("#login");
+
+            TableView<TableItemCustom> table = robot.lookup("#courseTable").queryAs(TableView.class);
+            String columnID = table.getColumns().get(0).getId();
+            Node node = robot.lookup("#" + columnID).nth(1).query();
+            robot.clickOn(node);
+            robot.clickOn(robot.lookup("#selectCourseButton").queryAs(Button.class));
+
+            robot.clickOn(robot.lookup("#assignment").queryAs(ImageView.class));
+
+            robot.clickOn(robot.lookup("#downloadBtn").queryAs(Button.class));
+            Node alert = robot.lookup(".dialog-pane").query();
+            DialogPane pane = (DialogPane) alert;
+            assertTrue(pane.isVisible());
+            assertEquals("You must select a file", pane.getContentText());
+            Button okButton = (Button) pane.lookup(".button");
+            robot.clickOn(okButton);
         }
     }
 
@@ -340,6 +390,117 @@ public class GUITest {
             robot.clickOn(robot.lookup("#submitBtn1").queryAs(Button.class));
             assertNotNull(robot.lookup("#selectFileButton").tryQueryAs((TableView.class)));
         }
+
+        @Test
+        public void downloadErrorTest(FxRobot robot) {
+            robot.clickOn("#email");
+            robot.write("19p4442");
+            robot.clickOn("#password");
+            robot.write("abdulraouf");
+            robot.clickOn("#login");
+
+            TableView<TableItemCustom> table = robot.lookup("#courseTable").queryAs(TableView.class);
+            String columnID = table.getColumns().get(0).getId();
+            Node node = robot.lookup("#" + columnID).nth(1).query();
+            robot.clickOn(node);
+            robot.clickOn(robot.lookup("#selectCourseButton").queryAs(Button.class));
+
+            robot.clickOn(robot.lookup("#quiz").queryAs(ImageView.class));
+
+            robot.clickOn(robot.lookup("#downloadBtn").queryAs(Button.class));
+            Node alert = robot.lookup(".dialog-pane").query();
+            DialogPane pane = (DialogPane) alert;
+            assertTrue(pane.isVisible());
+            assertEquals("You must select a file", pane.getContentText());
+            Button okButton = (Button) pane.lookup(".button");
+            robot.clickOn(okButton);
+        }
+    }
+
+    @Nested
+    public class ViewSubmissionsTestSuite {
+        @Start
+        public void start(Stage stage) throws IOException {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("LoginForm.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+            stage.setTitle("Learning Management System");
+            stage.setScene(scene);
+            stage.getIcons().add(new Image(Main.class.getResource("LoginForm.fxml") + "..\\..\\..\\..\\..\\img\\lms.png"));
+            stage.show();
+        }
+
+        @Test
+        public void backButtonTest(FxRobot robot) {
+            robot.clickOn("#email");
+            robot.write("19p4442");
+            robot.clickOn("#password");
+            robot.write("abdulraouf");
+            robot.clickOn("#login");
+
+            TableView<TableItemCustom> table = robot.lookup("#courseTable").queryAs(TableView.class);
+            String columnID = table.getColumns().get(0).getId();
+            Node node = robot.lookup("#" + columnID).nth(2).query();
+            robot.clickOn(node);
+            robot.clickOn(robot.lookup("#selectCourseButton").queryAs(Button.class));
+
+            robot.clickOn(robot.lookup("#assignment").queryAs(ImageView.class));
+            robot.clickOn(robot.lookup("#feedbackButton").queryAs(Button.class));
+
+            robot.clickOn(robot.lookup("#viewSubmissionsBackButton").queryAs(Button.class));
+            assertNotNull(robot.lookup("#feedbackButton").queryAs(Button.class));
+        }
+
+        @Test
+        public void selectedFileFeedbackTest(FxRobot robot){
+            robot.clickOn("#email");
+            robot.write("19p4442");
+            robot.clickOn("#password");
+            robot.write("abdulraouf");
+            robot.clickOn("#login");
+
+            TableView<TableItemCustom> table = robot.lookup("#courseTable").queryAs(TableView.class);
+            String columnID = table.getColumns().get(0).getId();
+            Node node = robot.lookup("#" + columnID).nth(2).query();
+            robot.clickOn(node);
+            robot.clickOn(robot.lookup("#selectCourseButton").queryAs(Button.class));
+
+            robot.clickOn(robot.lookup("#assignment").queryAs(ImageView.class));
+            robot.clickOn(robot.lookup("#feedbackButton").queryAs(Button.class));
+
+            TableView<TableItemCustom> subTable = robot.lookup("#sub_table").queryAs(TableView.class);
+            if(!subTable.getColumns().isEmpty()){
+                String subColumnID = subTable.getColumns().get(0).getId();
+                Node subNode = robot.lookup("#" + subColumnID).nth(1).query();
+                assertNotNull(subNode);
+                robot.clickOn(subNode);
+                robot.clickOn(robot.lookup("#selectFileButton").queryAs(Button.class));
+                assertNotNull(robot.lookup("#feedback").queryAs(TextArea.class));
+            }
+        }
+        @Test
+        public void noFileSelectedErrorTest(FxRobot robot){
+            robot.clickOn("#email");
+            robot.write("19p4442");
+            robot.clickOn("#password");
+            robot.write("abdulraouf");
+            robot.clickOn("#login");
+
+            TableView<TableItemCustom> table = robot.lookup("#courseTable").queryAs(TableView.class);
+            String columnID = table.getColumns().get(0).getId();
+            Node node = robot.lookup("#" + columnID).nth(2).query();
+            robot.clickOn(node);
+            robot.clickOn(robot.lookup("#selectCourseButton").queryAs(Button.class));
+
+            robot.clickOn(robot.lookup("#assignment").queryAs(ImageView.class));
+            robot.clickOn(robot.lookup("#feedbackButton").queryAs(Button.class));
+
+            robot.clickOn(robot.lookup("#selectFileButton").queryAs(Button.class));
+            Node alert = robot.lookup(".dialog-pane").query();
+            DialogPane pane = (DialogPane) alert;
+            assertTrue(pane.isVisible());
+            assertEquals("You must select a file", pane.getContentText());
+            Button okButton = (Button) pane.lookup(".button");
+            robot.clickOn(okButton);
+        }
     }
 }
-

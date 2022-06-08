@@ -19,7 +19,7 @@
             <TableColumn fx:id="file_status_col" prefWidth="129.0" text="File Status" />
         </columns>
       </TableView>
-      <Button layoutX="519.0" layoutY="23.0" mnemonicParsing="false" onAction="#back_click" text="BACK" />
+      <Button fx:id="viewSubmissionsBackButton" layoutX="519.0" layoutY="23.0" mnemonicParsing="false" onAction="#back_click" text="BACK" />
       <Button fx:id="selectFileButton" layoutX="194.0" layoutY="347.0" mnemonicParsing="false" onAction="#selectFile" prefHeight="39.0" prefWidth="213.0" text="SELECT FILE">
          <font>
             <Font size="18.0" />
