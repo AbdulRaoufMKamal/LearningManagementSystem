@@ -12,25 +12,31 @@
    <children>
       <TableView fx:id="assignmentTable" layoutY="73.0" prefHeight="275.0" prefWidth="601.0">
          <columns>
-            <TableColumn fx:id="courseCol" prefWidth="230.0" text="Course Name" />
-            <TableColumn fx:id="assignmentCol" prefWidth="161.0" text="Assignment no." />
-            <TableColumn fx:id="fileCol" prefWidth="209.0" text="File" />
+            <TableColumn fx:id="file_name_col" editable="false" prefWidth="600.0" text="Assignment Title" />
          </columns>
       </TableView>
-      <AnchorPane layoutY="-2.0" prefHeight="400.0" prefWidth="146.0" />
+      <AnchorPane layoutY="-2.0" prefHeight="400.0" prefWidth="146.0">
+         <children>
+            <Button fx:id="downloadBtn" layoutX="69.0" layoutY="352.0" mnemonicParsing="false" onAction="#Download" prefHeight="34.0" prefWidth="131.0" text="DOWNLOAD">
+               <font>
+                  <Font name="Cascadia Mono Regular" size="18.0" />
+               </font>
+            </Button>
+         </children></AnchorPane>
       <ImageView fitHeight="69.0" fitWidth="156.0" layoutX="221.0">
          <image>
             <Image url="@../../../img/lms_new.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="submitBtn" layoutX="369.0" layoutY="353.0" mnemonicParsing="false" onAction="#Submit" prefHeight="33.0" prefWidth="89.0" text="SUBMIT">
+      <Button layoutX="547.0" layoutY="14.0" mnemonicParsing="false" onAction="#back_click" text="BACK" />
+      <Button fx:id="submitBtn" layoutX="275.0" layoutY="354.0" mnemonicParsing="false" onAction="#Submit" prefHeight="34.0" prefWidth="90.0" text="SUBMIT">
          <font>
             <Font name="Cascadia Mono Regular" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="downloadBtn" layoutX="166.0" layoutY="353.0" mnemonicParsing="false" onAction="#Download" prefHeight="33.0" prefWidth="110.0" text="DOWNLOAD">
+      <Button layoutX="416.0" layoutY="354.0" mnemonicParsing="false" onAction="#feedback" text="VIEW FEEDBACK">
          <font>
-            <Font name="Cascadia Mono Regular" size="18.0" />
+            <Font size="18.0" />
          </font>
       </Button>
    </children>

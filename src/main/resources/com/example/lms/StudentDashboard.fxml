@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,11 +12,17 @@
    <top>
       <AnchorPane prefHeight="151.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <children>
+            <ImageView fx:id="adminimg" fitHeight="32.0" fitWidth="160.0" layoutX="244.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/teachers.png" />
+               </image>
+            </ImageView>
             <ImageView fitHeight="117.0" fitWidth="200.0" layoutX="200.0">
                <image>
                   <Image url="@../../../img/lms_new.jpg" />
                </image>
             </ImageView>
+            <Button fx:id="back_btn" layoutX="506.0" layoutY="14.0" mnemonicParsing="false" onAction="#back_click" text="BACK" />
          </children>
       </AnchorPane>
    </top>

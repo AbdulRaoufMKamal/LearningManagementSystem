@@ -6,10 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -18,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class LoginForm {
+
 
     @FXML
     private TextField email;
@@ -43,11 +41,13 @@ public class LoginForm {
         }
     }
 
+
+
     public void validateLogin(ActionEvent event) {
         DatabaseConnection connect = new DatabaseConnection();
         Connection connectDB = connect.getConnection();
 
-        String verifyLogin = "SELECT count(1) FROM account WHERE email = '" + email.getText() + "' AND password = '" + password.getText() + "'";
+        String verifyLogin = "SELECT count(1),type FROM account WHERE username = '" + email.getText() + "' AND password = '" + password.getText() + "'";
 
         try {
             Statement statement = connectDB.createStatement();
@@ -55,14 +55,33 @@ public class LoginForm {
 
             while(queryResult.next()) {
                 if(queryResult.getInt(1) == 1) {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource(("StudentDashboard.fxml")));
-                    Parent root = loader.load();
-                    StudentDashboard controller =  loader.getController();
-                    stage = (Stage) (((Node)event.getSource()).getScene().getWindow());
-                    scene = new Scene(root);
-                    stage.setTitle("dashboard");
-                    stage.setScene(scene);
-                    stage.show();
+                    if(queryResult.getString("type").equals("lecturer")) {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource(("StudentDashboard.fxml")));
+                        Parent root = loader.load();
+                        StudentDashboard controller = loader.getController();
+                        ResultSet in = connectDB.createStatement().executeQuery("select * from account where username = '" + email.getText() + "' AND password = '" + password.getText() + "'");
+                        in.next();
+                        controller.init(in.getString(1), in.getString(3));
+                        stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
+                        scene = new Scene(root);
+                        stage.setTitle("Dashboard");
+                        stage.setScene(scene);
+                        stage.show();
+                    }
+                    else {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("ChooseCoursesController.fxml"));
+                        Parent root = loader.load();
+                        ChooseCoursesController controller = loader.getController();
+                        ResultSet in = connectDB.createStatement().executeQuery("select * from account where username = '" + email.getText() + "' AND password = '" + password.getText() + "'");
+                        in.next();
+                        controller.init(in.getString(1), in.getString(3));
+                        stage = (Stage) (((Node) event.getSource()).getScene().getWindow());
+                        scene = new Scene(root);
+                        stage.setTitle("Courses");
+                        stage.setScene(scene);
+                        stage.show();
+
+                    }
                 }
 
                 else {
@@ -71,7 +90,9 @@ public class LoginForm {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Failed to load scene");
+            alert.showAndWait();
         }
     }
 
