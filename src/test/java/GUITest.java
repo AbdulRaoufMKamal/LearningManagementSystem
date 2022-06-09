@@ -67,6 +67,39 @@ public class GUITest {
             robot.clickOn("#login");
             assertNotNull(robot.lookup("#adminimg").queryAs(ImageView.class));
         }
+
+        @Test
+        public void emptyEmailOrPasswordErrorTest(FxRobot robot) {
+            Button login = robot.lookup("#login").queryAs(Button.class);
+            assertNotNull(login);
+            Label invalidInputLabel = robot.lookup("#wrongInput").queryAs(Label.class);
+            assertNotNull(invalidInputLabel);
+
+            assertEquals("", invalidInputLabel.getText());
+            robot.clickOn(login);
+            assertEquals("Please enter email and password", invalidInputLabel.getText());
+        }
+
+        @Test
+        public void invalidUserErrorTest(FxRobot robot) {
+            TextField email = robot.lookup("#email").queryAs(TextField.class);
+            assertNotNull(email);
+            robot.clickOn(email);
+            robot.write("anyEmail");
+            assertEquals("anyEmail", email.getText());
+
+            TextField password = robot.lookup("#password").queryAs(TextField.class);
+            assertNotNull(password);
+            robot.clickOn(password);
+            robot.write("anyPassword");
+            assertEquals("anyPassword", password.getText());
+
+            Label invalidInputLabel = robot.lookup("#wrongInput").queryAs(Label.class);
+            robot.clickOn("#login");
+            assertEquals("Invalid email or password", invalidInputLabel.getText());
+        }
+
+
     }
 
     @Nested
