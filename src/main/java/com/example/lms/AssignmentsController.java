@@ -85,13 +85,13 @@ public class AssignmentsController {
         return arr;
     }
 
-    public void writeFile(byte[] data, String fileName) throws IOException {
-        DirectoryChooser dc = new DirectoryChooser();
-        File file = dc.showDialog(null);
+    public File writeFile(byte[] data, String fileName, File file) throws IOException {
         String path = file.getAbsolutePath() + "\\" + fileName;
+        File ans = new File(path);
         OutputStream out = new FileOutputStream(path);
         out.write(data);
         out.close();
+        return ans;
     }
 
     public void Download(ActionEvent event) throws SQLException, IOException {
@@ -106,7 +106,9 @@ public class AssignmentsController {
             while (rs.next()) {
                 arr = rs.getBytes("file_data");
             }
-            writeFile(arr, tableItemCustom.getFile_name());
+            DirectoryChooser dc = new DirectoryChooser();
+            File file = dc.showDialog(null);
+            writeFile(arr, tableItemCustom.getFile_name(),file);
         }
         catch(Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -240,5 +242,8 @@ public class AssignmentsController {
             alert.setContentText("You must select a file");
             alert.showAndWait();
         }
+
     }
+
+
 }

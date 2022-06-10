@@ -66,14 +66,12 @@ public class Feedback {
     }
 
 
-
-    public void submitFeedback(ActionEvent event) throws SQLException {
-        String fb = feedback.getText();
+    public String temp(String fb) throws SQLException {
         if(fb.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("You have not entered any text");
             alert.showAndWait();
-            return;
+            return fb;
         }
         DatabaseConnection connect = new DatabaseConnection();
         Connection connectDB = connect.getConnection();
@@ -82,6 +80,11 @@ public class Feedback {
         pst1.setString(1,fb);
         pst1.execute();
         pst2.execute();
+        return fb;
+    }
+    public void submitFeedback(ActionEvent event) throws SQLException {
+        String fb = feedback.getText();
+        String ans = temp(fb);
     }
 
     public void counterLimit(KeyEvent keyEvent) {

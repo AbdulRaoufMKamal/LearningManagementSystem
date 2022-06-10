@@ -74,13 +74,12 @@ public class LecturesController implements Initializable {
         return arr;
     }
 
-    public void writeFile(byte[] data, String fileName) throws IOException {
-        DirectoryChooser dc = new DirectoryChooser();
-        File file = dc.showDialog(null);
+    public File writeFile(byte[] data, String fileName, File file) throws IOException {
         String path = file.getAbsolutePath() + "\\" + fileName;
         OutputStream out = new FileOutputStream(path);
         out.write(data);
         out.close();
+        return file;
     }
 
     public void Download(ActionEvent event) throws SQLException, IOException {
@@ -95,7 +94,9 @@ public class LecturesController implements Initializable {
             while (rs.next()) {
                 arr = rs.getBytes("file_data");
             }
-            writeFile(arr, tableItemCustom.getFile_name());
+            DirectoryChooser dc = new DirectoryChooser();
+            File file = dc.showDialog(null);
+            writeFile(arr, tableItemCustom.getFile_name(), file);
         }
         catch(Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
