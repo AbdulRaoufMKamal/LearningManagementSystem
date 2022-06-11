@@ -2,7 +2,7 @@ create database LMS;
 use LMS;
 CREATE TABLE Account (Username varchar(50), Password varchar(50), Type varchar(50));
 CREATE TABLE Course (Course_name varchar(50), Lecturer varchar(50));
-CREATE TABLE File (submission_id integer auto_increment, file_name varchar(50), file_data longblob, file_type varchar(50), Course_name varchar(50), Lecturer varchar(10), Username varchar(50), feedback varchar(100), file_status varchar(100));
+CREATE TABLE File (submission_id integer auto_increment, file_name varchar(50), file_data longblob, file_type varchar(50), Course_name varchar(50), Lecturer varchar(10), Username varchar(50), feedback varchar(100), file_status varchar(100), primary key(submission_id));
 CREATE TABLE Taken_Courses (Username varchar(50), Course_name varchar(50));
 
 
