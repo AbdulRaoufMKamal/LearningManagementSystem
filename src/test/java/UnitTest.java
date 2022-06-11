@@ -1,4 +1,3 @@
-import com.example.lms.Feedback;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -8,10 +7,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.SQLException;
 
-import com.example.lms.AssignmentsController;
+import com.example.lms.*;
 
 
-public class DownloadTest {
+public class UnitTest {
     File folder = new File("src/main/resources/TestingDownload");
     File file = new File("src/main/resources/Downloads/DB-Lect2.pdf");
     @Test

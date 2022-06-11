@@ -128,10 +128,6 @@ public class Feedback {
             maxChar++;
             charactersCount.setText("Remaining Characters: " + maxChar);
         }
-
-
-
-
     }
 
     public void back_click(ActionEvent event){
